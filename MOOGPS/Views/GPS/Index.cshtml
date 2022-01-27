@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MOOGPS.Models.Location>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a  class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.longitude)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.longitude)
+            </td>
+            <td>
+                <button type="button" class="btn btn-info" onclick="ViewLocation(@item.latitude,@item.longitude)"> INFO</button>
+              
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script>
+     function ViewLocation(latitudeG, longitudeG) {
+        window.open('http://www.google.com/maps/place/' + latitudeG + ',' + longitudeG);
+        $(".widget-reveal-card-open").show();
+    }
+</script>
